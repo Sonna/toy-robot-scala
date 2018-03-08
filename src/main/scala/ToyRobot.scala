@@ -44,8 +44,6 @@ object ToyRobot extends App {
 
     def place(coordinates: String) {
       val Array(dx, dy, dFacing, _*) = coordinates.split(SeparatorsRegex)
-      // val Array(dx, dy, dFacing, _*) = coordinates.split("[ |,\\s*]")
-      println(s"[dx: $dx, dy: $dy, dFacing: $dFacing]")
       x = dx.toInt
       y = dy.toInt
       facing = dFacing
@@ -67,11 +65,11 @@ object ToyRobot extends App {
       x += Move(facing)('x')
       y += Move(facing)('y')
 
-      if (x < 0 || x >= 4) {
+      if (x < 0 || x > 4) {
         x -= Move(facing)('x')
       }
 
-      if (x < 0 || x >= 4) {
+      if (y < 0 || y > 4) {
         y -= Move(facing)('y')
       }
     }
@@ -100,7 +98,6 @@ object ToyRobot extends App {
     {
       var line = ""
       while ({line = StdIn.readLine(); line != "EXIT"}) {
-        // println(line)
         val input = line.split(" ")
         var commandMethodName = input(0)
         var commandArgs = ""

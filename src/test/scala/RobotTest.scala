@@ -91,6 +91,38 @@ class RobotTest extends org.scalatest.FunSuite {
     assert(robot.y === 4)
   }
 
+  test("Robot.move will not fall off table from 0,4,NORTH") {
+    val robot = new ToyRobot.Robot()
+    robot.place("0,4,NORTH")
+    robot.move("")
+    assert(robot.x === 0)
+    assert(robot.y === 4)
+  }
+
+  test("Robot.move will not fall off table from 4,0,EAST") {
+    val robot = new ToyRobot.Robot()
+    robot.place("4,0,EAST")
+    robot.move("")
+    assert(robot.x === 4)
+    assert(robot.y === 0)
+  }
+
+  test("Robot.move will not fall off table from 4,0,SOUTH") {
+    val robot = new ToyRobot.Robot()
+    robot.place("4,0,SOUTH")
+    robot.move("")
+    assert(robot.x === 4)
+    assert(robot.y === 0)
+  }
+
+  test("Robot.move will not fall off table from 0,4,WEST") {
+    val robot = new ToyRobot.Robot()
+    robot.place("0,4,WEST")
+    robot.move("")
+    assert(robot.x === 0)
+    assert(robot.y === 4)
+  }
+
   test("Robot.exec place at 1,2,WEST") {
     val robot = new ToyRobot.Robot()
     robot.exec("PLACE", "1,2,WEST")
