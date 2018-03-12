@@ -3,17 +3,6 @@ import scala.io.Source
 import scala.io.StdIn
 
 object ToyRobot extends App {
-  val COMMANDS = Map[String, String](
-    "PLACE" -> "place",
-    "MOVE" -> "move",
-    "LEFT" -> "left",
-    "RIGHT" -> "right",
-    "REPORT" -> "report"
-  )
-
-  // val Table = Array.ofDim[Char](5,5)
-  // val Table = Array.tabulate(5,5)(".")
-
   class Robot(var x: Int = 0, var y: Int = 0, var facing: String = "NORTH") {
     val Move = Map[String,Map[Char,Int]] (
       "NORTH" -> Map[Char,Int]( 'x' ->  0, 'y' ->  1 ),
