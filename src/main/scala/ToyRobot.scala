@@ -3,17 +3,6 @@ import scala.io.Source
 import scala.io.StdIn
 
 object ToyRobot extends App {
-  val COMMANDS = Map[String, String](
-    "PLACE" -> "place",
-    "MOVE" -> "move",
-    "LEFT" -> "left",
-    "RIGHT" -> "right",
-    "REPORT" -> "report"
-  )
-
-  // val Table = Array.ofDim[Char](5,5)
-  // val Table = Array.tabulate(5,5)(".")
-
   class Robot(var x: Int = 0, var y: Int = 0, var facing: String = "NORTH") {
     val Move = Map[String,Map[Char,Int]] (
       "NORTH" -> Map[Char,Int]( 'x' ->  0, 'y' ->  1 ),
@@ -44,8 +33,6 @@ object ToyRobot extends App {
 
     def place(coordinates: String) {
       val Array(dx, dy, dFacing, _*) = coordinates.split(SeparatorsRegex)
-      // val Array(dx, dy, dFacing, _*) = coordinates.split("[ |,\\s*]")
-      println(s"[dx: $dx, dy: $dy, dFacing: $dFacing]")
       x = dx.toInt
       y = dy.toInt
       facing = dFacing
@@ -67,11 +54,11 @@ object ToyRobot extends App {
       x += Move(facing)('x')
       y += Move(facing)('y')
 
-      if (x < 0 || x >= 4) {
+      if (x < 0 || x > 4) {
         x -= Move(facing)('x')
       }
 
-      if (x < 0 || x >= 4) {
+      if (y < 0 || y > 4) {
         y -= Move(facing)('y')
       }
     }
@@ -100,7 +87,6 @@ object ToyRobot extends App {
     {
       var line = ""
       while ({line = StdIn.readLine(); line != "EXIT"}) {
-        // println(line)
         val input = line.split(" ")
         var commandMethodName = input(0)
         var commandArgs = ""
